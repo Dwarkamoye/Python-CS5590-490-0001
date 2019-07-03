@@ -22,7 +22,7 @@ plt.show()
 
 
 numeric_features = train.select_dtypes(include=[np.number])
-print(numeric_features.describe())
+#print(numeric_features.describe())
 
 corr = numeric_features.corr()
 
@@ -43,7 +43,6 @@ plt.show()
 nulls = pd.DataFrame(train.isnull().sum().sort_values(ascending=False)[:25])
 nulls.columns = ['Null Count']
 nulls.index.name = 'Feature'
-print(nulls)
 
 # build a linear regression model
 dataset = train.select_dtypes(include=[np.number])
@@ -51,7 +50,7 @@ dataset = train.select_dtypes(include=[np.number])
 y = np.log(train.Profit)
 
 x = dataset.drop(['Profit'], axis=1)
-X_train, X_test, y_train, y_test = train_test_split(x, y, random_state=42, test_size=.33)
+X_train, X_test, y_train, y_test = train_test_split(x, y, random_state=42, test_size=.20)
 lr1 = linear_model.LinearRegression()
 model = lr1.fit(X_train, y_train)
 
